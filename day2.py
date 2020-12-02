@@ -4,7 +4,6 @@ from timeit import timeit
 
 # lines = open('day2.txt').readlines()
 lines = [re.match(r'(\d+)-(\d+)\s([a-z]): (\w+)', x).groups() for x in open('day2.txt').readlines()]
-print(lines)
 
 
 def part1():
