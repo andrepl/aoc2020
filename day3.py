@@ -1,9 +1,9 @@
-import re
 from timeit import timeit
 
 
 lines = open('day3.txt').readlines()
-lines = [list(l.strip()) for l in lines]
+lines = [l.strip() for l in lines]
+
 
 def count_trees(dx, dy, x=0, y=0):
     total = 0
