@@ -82,9 +82,10 @@ def part1():
 
 def part2():
     valid = 0
-    for card in cards:
+    for i, card in enumerate(cards):
         card = parse_card(card)
         if isvalid2(card):
+            print(i)
             valid += 1
     print(valid)
 
