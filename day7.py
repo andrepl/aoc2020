@@ -2,7 +2,10 @@ from collections import defaultdict
 from timeit import timeit
 import re
 
-
+# parse the input into...
+# { 'posh crimson': [('mirrored tan', 2), ('faded red', 1), ('striped gray', 1)],
+#   'bright gray': [('striped white', 1), ('vibrant cyan', 4), ('clear white', 4), ('muted gold', 4)]
+#   ... }
 MAP = defaultdict(list)
 for line in open('day7.txt').readlines():
     container, contents = line.strip('.').split(' bags contain ')
@@ -14,27 +17,40 @@ for line in open('day7.txt').readlines():
 
 
 def part1():
-    def chk(b):
+
+    def can_hold(b):
+        '''
+        yield every bag that can directly hold the given bag `b`
+
+        '''
         for k, contents in MAP.items():
             if b in (c[0] for c in contents):
                 yield k
+
+    # do an exhaustive BFS
     q = [('shiny gold', 1)]
     visited = set()
     while q:
-        k, v = q.pop(0)
-        for r in chk(k):
-            if r not in visited:
-                visited.add(r)
-                q.append((r, v + 1))
+        bag, score = q.pop(0)
+        for parent in can_hold(bag):
+            if parent not in visited:
+                visited.add(parent)
+                q.append((parent, score + 1))
+
     print(len(visited))
 
 
 def part2():
 
     def get_cost(bag):
+        '''
+        recursively calculate the contents of a bag, plus 1 for the bag itself.
+
+        '''
         return 1 + sum(get_cost(a) * b for a, b in MAP[bag])
 
-    print(get_cost('shiny gold') - 1)
+    print(get_cost('shiny gold') - 1)  # the original bag doesn't count. -1
+    
 
 if __name__ == '__main__':
     print("Part 1: ", end="")
