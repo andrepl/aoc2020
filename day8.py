@@ -50,6 +50,7 @@ def part1():
 
 
 def part2():
+    # find all progam variants
     prog_vars = []
     for i in range(len(instructions)):
         beforecode = instructions[:i]

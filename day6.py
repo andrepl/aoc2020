@@ -4,22 +4,14 @@ from timeit import timeit
 
 records = [r.split('\n') for r in open('day6.txt').read().split('\n\n')]
 
+
 def part1():
-    tot = 0
-    for rec in records:
-        recset = set()
-        for person in rec:
-            recset.update(person)
-        tot += len(recset)
-    print(tot)
+    print(sum(len(set.union(*(set(r) for r in rec))) for rec in records))
         
 
 def part2():
-    tot = 0
-    for rec in records:
-        recset = set.intersection(*(set(r) for r in rec))
-        tot += len(recset)
-    print(tot)
+    print(sum(len(set.intersection(*(set(r) for r in rec))) for rec in records))
+
 
 
 if __name__ == '__main__':
