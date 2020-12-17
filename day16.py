@@ -69,6 +69,6 @@ def part2():
 
 if __name__ == '__main__':
     print("Part 1: ", end="")
-    # print("- Time: ", timeit(part1, number=1))
+    print("- Time: ", timeit(part1, number=1))
     print("Part 2: ", end="")
     print("- Time: ", timeit(part2, number=1))
