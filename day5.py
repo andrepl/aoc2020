@@ -18,11 +18,7 @@ def part1():
 
 def part2():
     print(set(range(min(seat_ids), max(seat_ids))).difference(seat_ids))[0]
-    # for sid in range(min(seat_ids), max(seat_ids)):
-    #     if sid not in seat_ids:
-    #         print(sid)
-    #         break
-    # pass
+
 
 if __name__ == '__main__':
     print("Part 1: ", end="")

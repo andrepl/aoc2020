@@ -64,12 +64,16 @@ def isvalid(c):
 
 def isvalid2(c):
     if not isvalid(c):
+        print('False')
         return False
 
     for k, validator in REQ2.items():
         if not validator(c[k]):
+            print('False')
             return False
+    print('True')
     return True
+
 
 def part1():
     valid = 0
@@ -85,7 +89,6 @@ def part2():
     for i, card in enumerate(cards):
         card = parse_card(card)
         if isvalid2(card):
-            print(i)
             valid += 1
     print(valid)
 
