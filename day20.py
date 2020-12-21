@@ -168,12 +168,12 @@ def find_matching_tile(tiles_list, edgereqs):
 def assemble_puzzle(tiles):
     tiles_list = list(tiles.values())
     dim = int(math.sqrt(len(tiles)))
-    grid = dict.fromkeys(itertools.permutations(range(dim), 2))  # initialize an empty grid
+    grid = {}
 
     # pick any corner piece and put it at 0, 0
     grid[(0, 0)] = [t for t in tiles_list if len(t.blank_edges) == 2][0]
 
-    # the rest of part 2 wants the data as a list rather than the dict we use here.
+    # the rest of part 2 wants the grid data as a list rather than the dict we use here...
     # it's easier to build it up as we go than to do it all at the end.
     grid_as_list = [grid[(0, 0)]]
 
@@ -184,7 +184,6 @@ def assemble_puzzle(tiles):
     # Rotate the initial corner piece correctly
     while grid[(0, 0)].blank_edges not in ('NW', 'WN'):
         grid[(0, 0)].rotate()
-        print(grid[(0, 0)].blank_edges)
 
     # fill it all in.  We do this by building up a dict of 'edge requirements'
     # which maps a cardinal direction (N, S, E, W) to either None (no neighbouring tile)
@@ -252,9 +251,11 @@ def part2():
     for image in image.all_possible_orientations():
         monsters = image.find_seamonsters()
         if monsters:
+            print(monsters)
             # this isn't the best way to do this, but hey.
             image.erase_monsters(monsters)
             print(image.count_hashes())
+            break
 
 
 if __name__ == '__main__':
