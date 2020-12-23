@@ -23,9 +23,9 @@ REQ = dict(
     iyr=lambda v: 2010 <= int(v) <= 2020,
     eyr=lambda v: 2020 <= int(v) <= 2030,
     hgt=validate_height,
-    hcl=lambda v: re.match(r'#[0-9a-f]{6}', v) is not None,
+    hcl=lambda v: re.match(r'^#[0-9a-f]{6}$', v) is not None,
     ecl=lambda v: v in 'amb blu brn gry grn hzl oth'.split(' '),
-    pid=lambda v: len(v) == 9 and re.match(r'^\d+$', v)
+    pid=lambda v: re.match(r'^\d{9}$', v) is not None
 )
 
 
